@@ -16,5 +16,7 @@ public class UserServiceImpl {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ValidationUtil validationUtil;
 
 }
