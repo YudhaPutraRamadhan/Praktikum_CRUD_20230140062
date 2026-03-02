@@ -19,4 +19,20 @@ public class UserServiceImpl {
     @Autowired
     private ValidationUtil validationUtil;
 
+    @Override
+    public UserDto AddUser(UserAddRequest request) {
+        validationUtil.validate(request);
+
+        User saveUser = User.builder()
+                .id(UUID.randomUUID().toString())
+                .name(request.getName())
+                .age(request.getAge())
+                .build();
+
+        userRepository.save(saveUser);
+
+        UserDto userDto = UserMapper.MAPPER.toUserDtoData(saveUser);
+
+        return userDto;
+    }
 }
