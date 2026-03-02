@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         List<UserDto> userDto = new ArrayList<>();
         for (User user : users) {
-            userDto.add(UserMapper.MAPPER.toUserDtoData(user))
+            userDto.add(UserMapper.MAPPER.toUserDtoData(user));
         }
         return userDto;
     }
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
         User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
 
-        User user = User.builer()
+        User user = User.builder()
                 .id(existingUser.getId())
                 .name(request.getName())
                 .age(request.getAge())
